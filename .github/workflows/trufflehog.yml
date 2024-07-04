@@ -1,0 +1,9 @@
+git-secrets:
+  stage: build
+  script:
+    - docker run --rm -it -v "$PWD:/pwd" trufflesecurity/trufflehog:latest github --repo https://github.com/jolesoto/vulpy
+  artifacts:
+    paths: [trufflehog-output.json]
+    when: always
+    expire_in: one week
+  allow_failure: true
